@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recognition-model-deployment
+  namespace: f1-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recognition-model-app
+  template:
+    metadata:
+      labels:
+        app: recognition-model-app
+    spec:
+      containers:
+        - name: recognition-model-app
+          image: f1-recognition-model:v0.2
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          livenessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 10 
+          env:
+          #TODO: move these into secrets
+          - name: ROBOFLOW_API_KEY
+            value: "rXEt6FwM5uzppisJT2IF"
