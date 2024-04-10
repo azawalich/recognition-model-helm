@@ -8,4 +8,4 @@ Mentioned model is avaliable:
 - [on GitLab](https://gitlab.com/formula-1-fullstack-mlops/formula-one-recognition-model).
 
 # Adding image to use in minikube
-`minikube image load f1-recognition-model:v0.2`
+`minikube image load f1-recognition-model:v0.3`
