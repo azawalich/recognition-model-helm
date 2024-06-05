@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: recognition-model-app
-          image: f1-recognition-model:v0.5
+          image: f1-recognition-model:v0.7
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
@@ -44,10 +44,5 @@ spec:
               secretKeyRef:
                 name: minio-dashboard-secret
                 key: secret_key
-          - name: ROBOFLOW_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: recognition-model-secret
-                key: roboflow_api_key
           command: ["python", "-m", "main.py"]
-          args: ["--minio-url", "$(MINIO_URL)", "--access-key", "$(MINIO_ACCESS_KEY)", "--secret-key", "$(MINIO_SECRET_ACCESS_KEY)", "--roboflow-api-key", "$(ROBOFLOW_API_KEY)", "--debugging-local", "$(DEBUGGING_LOCAL)"]
+          args: ["--minio-url", "$(MINIO_URL)", "--access-key", "$(MINIO_ACCESS_KEY)", "--secret-key", "$(MINIO_SECRET_ACCESS_KEY)", "--debugging-local", "$(DEBUGGING_LOCAL)"]
